@@ -23,7 +23,7 @@ vim.api.nvim_create_user_command(
     { nargs = 0 }
 )
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewRead" }, {
+vim.api.nvim_create_autocmd("BufRead", {
     pattern = "*.conf",
     command = "set filetype=nginx",
 })
