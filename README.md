@@ -42,3 +42,13 @@ tmux a
 ```bash
 tmux attach -t [session_name]
 ```
+
+4. Swap window order (in tmux command mode)
+```bash
+swap-window -s [window no#] -t [window no#]
+```
+
+5. Swap session order (in tmux command mode)
+```bash
+swap-session -s [session no#] -t [session no#]
+```
