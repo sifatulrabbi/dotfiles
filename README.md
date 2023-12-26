@@ -2,7 +2,7 @@
 
 # Neovim
 
-My Neovim configs are in another (repo)[https://github.com/sifatulrabbi/nvim]
+My Neovim configs are in another [repo](https://github.com/sifatulrabbi/nvim)
 
 # Tmux
 
