@@ -10,13 +10,13 @@ My Neovim configs are in another (repo)[https://github.com/sifatulrabbi/nvim]
 
 > These are default keymaps
 
-1. Create new tmux window -> `prefix + `c`
+1. Create new tmux window -> `prefix` + `c`
 2. Navigate between windows -> `prefix` + `[window #no]`
 3. Cycle through tmux windows -> `prefix` + `n` | `prefix + p`
 4. Rename current tmux window -> `prefix` + `,`
 4. Rename current tmux session -> `prefix` + `$`
-5. See all windows -> `prefix + `w`
-5. See all sessions -> `prefix + `s`
+5. See all windows -> `prefix` + `w`
+5. See all sessions -> `prefix` + `s`
 6. Copy mode -> `prefix` + `[`
 7. Copy mode -> `q`
 8. Split the current pane vertically -> `prefix` + `%`
