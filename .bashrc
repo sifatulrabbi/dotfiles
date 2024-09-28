@@ -120,6 +120,35 @@ set -o vi
 # xmodmap ~/.Xmodmap
 # setxkbmap -option 'caps:ctrl_modifier'
 
+ac_mode() {
+    if command -v system76-power &> /dev/null
+    then
+        sudo system76-power profile performance
+        sudo system76-power profile performance
+    fi
+
+    if command -v cpupower &> /dev/null
+    then
+        sudo cpupower frequency-set -g performance
+    fi
+}
+
+bat_mode() {
+    if command -v system76-power &> /dev/null
+    then
+        sudo system76-power profile battery
+        sudo system76-power profile battery
+    fi
+
+    if command -v cpupower &> /dev/null
+    then
+        sudo cpupower frequency-set -g powersave
+    fi
+}
+
+export PATH="/bin:$PATH"
+export PATH=$PATH:/snap/bin
+
 # pyenv (python version manager)
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
@@ -133,23 +162,3 @@ export NVM_DIR="$HOME/.nvm"
 
 # Go
 export PATH=$PATH:/usr/local/go/bin
-
-ac_mode() {
-    sudo cpupower frequency-set -g performance
-}
-
-bat_mode() {
-    sudo cpupower frequency-set -g powersave
-}
-. "$HOME/.cargo/env"
-
-export PATH="/bin:$PATH"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"

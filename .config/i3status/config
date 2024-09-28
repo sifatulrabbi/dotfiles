@@ -7,43 +7,64 @@
 # If the above line is not correctly displayed, fix your editor first!
 
 general {
-        colors = true
-        interval = 5
+    output_format = i3bar
+    interval = 1
+    colors = true
+    color_good = "#b8bb26"      # Gruvbox green for good states
+    color_degraded = "#fabd2f"  # Gruvbox yellow for degraded states
+    color_bad = "#fb4934"       # Gruvbox red for bad states
 }
 
 order += "ipv6"
 order += "wireless _first_"
 order += "ethernet _first_"
 order += "battery all"
-order += "disk /"
-order += "load"
+order += "cpu_usage"
+order += "cpu_temperature 0"
 order += "memory"
+order += "disk /"
 order += "tztime local"
+order += "tztime belgium"
 
 wireless _first_ {
-        format_up = "W: (%quality at %essid) %ip"
-        format_down = "W: down"
+    format_up = "[W: (%quality at %essid) %ip"
+    format_down = "[W: down"
 }
 
 ethernet _first_ {
-        format_up = "E: %ip (%speed)"
-        format_down = "E: down"
+    format_up = "E: %ip (%speed)]"
+    format_down = "E: down]"
 }
 
 battery all {
-        format = "%status %percentage %remaining"
+    format = "[%status %percentage %remaining]"
 }
 
-load {
-        format = "CPU %1min"
+cpu_usage {
+  format = "[Cpu: %usage,"
+}
+
+cpu_temperature 0 {
+    format = "%degrees°C]"
+    max_threshold = 75
+    format_above_threshold = "Overheat: %degrees°C"
+    path = "/sys/class/thermal/thermal_zone0/temp"
 }
 
 memory {
-        format = "MEM %used"
-        threshold_degraded = "1G"
-        format_degraded = "MEMORY < %available"
+  memory_used_method = classical
+  format="[Mem: %used/%total]"
+}
+
+disk "/" {
+  format = "[Disk: %percentage_used]"
 }
 
 tztime local {
-        format = "%a, %b %d | %I:%M %p |"
+    format = "[%a, %b %d - %I:%M %p,"
+}
+
+tztime belgium {
+    timezone = "Europe/Brussels"
+    format = "BE: %I:%M %p]"
 }
