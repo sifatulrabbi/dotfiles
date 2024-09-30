@@ -1,14 +1,16 @@
 [user]
 	name = Sifatul Rabbi
-	email = sifatulrabbii@gmail.com
+	email = mdsifatulislam.rabbi@gmail.com
 	username = sifatulrabbi
+
+[includeIf "gitdir:/home/sifatul/work/sequesto/"]
+  path = /home/sifatul/work/sequesto/.gitconfig-sequesto
 
 [init]
 	defaultBranch = main
 
 [core]
 	editor = nvim
-  ; pager = delta
 
 [web]
 	browser = google-chrome
