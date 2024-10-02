@@ -11,6 +11,8 @@ power_connected = "on-line" in subprocess.run(
     ["acpi", "-a"], capture_output=True
 ).stdout.decode("utf-8")
 
+subprocess.run(["ac_mode" if power_connected else "bat_mode"])
+
 
 def _get_xrandr_output_command(
     dpid: str,
