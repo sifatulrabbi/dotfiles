@@ -7,8 +7,26 @@ import os
 from datetime import datetime, timezone
 
 
-def _get_xrandr_output_command(dpid: str, rate="60.00", turnoff=False):
-    cmd = f"xrandr --output {dpid} {'--off' if turnoff else f'--mode 1920x1080 --rate {rate} --scale 1x1'}"
+power_connected = "on-line" in subprocess.run(
+    ["acpi", "-a"], capture_output=True
+).stdout.decode("utf-8")
+
+
+def _get_xrandr_output_command(
+    dpid: str,
+    rate="74.97",
+    turnoff=False,
+    *,
+    position: str | None = None,
+    primary_display: str | None = None,
+):
+    cmd = f"xrandr --output {dpid}"
+    if turnoff:
+        cmd += " --off"
+    else:
+        cmd += f" --mode 1920x1080 --rate {rate} --scale 1x1"
+    if position and primary_display:
+        cmd += f" --{position}-of {primary_display}"
     return cmd.split(" ")
 
 
@@ -53,9 +71,14 @@ with open("./setup_monitor.logs", "a") as logfile:
         )
     )
     external_display = any(not dp.startswith("e") for dp in display_list)
+    external_display_id = None
 
     for dp in display_list:
+        if not dp.startswith("e"):
+            external_display_id = dp
         _exec_command(_get_xrandr_output_command(dp, turnoff=True))
+
+    print(external_display, external_display_id)
 
     xresources_contents += "Xft.dpi: " + ("93\n" if external_display else "111\n")
     with open(xresources_file, "w") as xfile:
@@ -63,9 +86,17 @@ with open("./setup_monitor.logs", "a") as logfile:
     _exec_command(["xrdb", "-merge", xresources_file])
 
     for dp in display_list:
-        rate = "60.00" if dp.startswith("e") else "60.00"
-        if external_display and dp.startswith("e"):
+        rate = "60.00" if dp.startswith("e") else "74.97"
+        if external_display and dp.startswith("e") and not power_connected:
             continue
-        _exec_command(_get_xrandr_output_command(dp, rate=rate))
+        if dp.startswith("e") and external_display:
+            _exec_command(
+                _get_xrandr_output_command(
+                    dp, rate=rate, position="right", primary_display=external_display_id
+                )
+            )
+        else:
+            _exec_command(_get_xrandr_output_command(dp, rate=rate))
 
     logfile.write(f"SUCCESS: {datetime.now(timezone.utc).isoformat()}\n")
+    
