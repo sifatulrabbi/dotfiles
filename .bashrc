@@ -68,31 +68,30 @@ xterm* | rxvt*)
 *) ;;
 esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-	alias ls="ls --color=auto"
-	alias dir="dir --color=auto"
-	alias vdir="vdir --color=auto"
-	alias grep="grep --color=auto"
-	alias fgrep="fgrep --color=auto"
-	alias egrep="egrep --color=auto"
-fi
+# # some more ls aliases
+# alias ll="ls -alF"
+# alias la="ls -Al"
+# alias l="ls -CF"
+# alias sosh="source ~/.bashrc"
+# alias hibernate="systemctl hibernate"
+# alias suspend="systemctl suspend"
+# alias rm-x-file="find . -type f -exec chmod 644 {} \;"
+# alias rm-x-dir="find . -type d -exec chmod 755 {} \;"
+# # enable color support of ls and also add handy aliases
+# if [ -x /usr/bin/dircolors ]; then
+# 	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+# 	alias ls="ls --color=auto"
+# 	alias dir="dir --color=auto"
+# 	alias vdir="vdir --color=auto"
+# 	alias grep="grep --color=auto"
+# 	alias fgrep="fgrep --color=auto"
+# 	alias egrep="egrep --color=auto"
+# fi
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export VISUAL="nvim"
 export EDITOR="nvim"
-
-# some more ls aliases
-alias ll="ls -alF"
-alias la="ls -Al"
-alias l="ls -CF"
-alias sosh="source ~/.bashrc"
-alias hibernate="systemctl hibernate"
-alias suspend="systemctl suspend"
-alias rm-x-file="find . -type f -exec chmod 644 {} \;"
-alias rm-x-dir="find . -type d -exec chmod 755 {} \;"
 
 
 # Alias definitions.
@@ -162,3 +161,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Go
 export PATH=$PATH:/usr/local/go/bin
+
+# Rust/Cargo
+. "$HOME/.cargo/env"
