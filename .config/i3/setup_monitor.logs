@@ -1,3 +1,19 @@
 SUCCESS: 2024-09-08T06:52:38.877564+00:00
 SUCCESS: 2024-09-26T03:51:20.166156+00:00
 SUCCESS: 2024-09-26T03:51:30.181317+00:00
+ERROR: xrandr: unrecognized option '--right-of=HDMI-0'
+Try 'xrandr --help' for more information.
+
+SUCCESS: 2024-10-02T15:06:45.239620+00:00
+ERROR: xrandr: unrecognized option '--right-of=HDMI-0'
+Try 'xrandr --help' for more information.
+
+SUCCESS: 2024-10-02T15:07:18.814831+00:00
+ERROR: xrandr: cannot find mode 1920x1080
+
+SUCCESS: 2024-10-03T03:27:10.648421+00:00
+ERROR: xrandr: cannot find mode 1920x1080
+
+SUCCESS: 2024-10-03T03:27:44.649433+00:00
+ERROR: xrandr: loop in relative position specifications
+

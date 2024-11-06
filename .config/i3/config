@@ -5,7 +5,7 @@ set $mod Mod4
 font pango:FiraCode Nerd Font Mono 9
 
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c 000000 --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 exec --no-startup-id xfce4-power-manager
@@ -165,9 +165,9 @@ mode "resize" {
     bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
 bindsym $mod+t exec --no-startup-id "/home/sifatul/.config/i3/touchpad.sh"
 bindsym $mod+Shift+t exec --no-startup-id "/home/sifatul/.config/i3/disable_touchpad.sh"
+bindsym $mod+r mode "resize"
 
 bar {
     status_command i3status -c ~/.config/i3status/config
@@ -192,7 +192,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 10%-
 
 # custom bindings
 bindsym $mod+Ctrl+s exec systemctl suspend
-bindsym $mod+Ctrl+l exec i3lock -c 000000
+bindsym $mod+Ctrl+l exec i3lock -c 000000 --nofork
 
 ### Screenshots
 ## The screenshots dir

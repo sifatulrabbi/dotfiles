@@ -1,0 +1,155 @@
+# Set mod key
+set $mod Mod4
+
+# Font
+font pango:FiraCode Nerd Font Mono 9
+
+# Autostart applications
+exec --no-startup-id dex --autostart --environment sway
+exec --no-startup-id swayidle -w timeout 300 'swaylock -c 000000' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id dunst
+
+# Wallpaper (using swaybg instead of feh)
+exec_always --no-startup-id swaybg -i /usr/share/backgrounds/pop/galen-crout-175291.jpg -m fill
+
+# Volume and microphone controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# System settings
+# Replace xmodmap and xrandr with Wayland-compatible alternatives if necessary
+# e.g., sway input and output settings
+
+# Floating windows with mod + mouse
+floating_modifier $mod
+
+# Launch terminal
+bindsym $mod+Return exec alacritty
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Application launcher (replacing dmenu with rofi)
+bindsym $mod+d exec "rofi -show drun"
+
+# Change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split container layout
+bindsym $mod+b split h
+bindsym $mod+v split v
+
+# Fullscreen mode
+bindsym $mod+f fullscreen toggle
+
+# Container layouts
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Floating toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+# Focus parent container
+bindsym $mod+a focus parent
+
+# Workspace names
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Workspace switching
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Move container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Reload and restart Sway
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+# Resize mode
+mode "resize" {
+    bindsym j resize shrink width 10px
+    bindsym k resize grow height 10px
+    bindsym l resize shrink height 10px
+    bindsym semicolon resize grow width 10px
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+# Touchpad toggle scripts (assuming they're Wayland-compatible)
+bindsym $mod+t exec --no-startup-id "/home/sifatul/.config/i3/touchpad.sh"
+bindsym $mod+Shift+t exec --no-startup-id "/home/sifatul/.config/i3/disable_touchpad.sh"
+bindsym $mod+r mode "resize"
+
+# Bar setup
+bar {
+    status_command waybar
+}
+
+# Brightness controls
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+
+# Custom bindings
+bindsym $mod+Ctrl+s exec systemctl suspend
+bindsym $mod+Ctrl+l exec swaylock -c 000000
+
+# Screenshot bindings (use grim and slurp as Wayland-compatible alternatives)
+exec_always --no-startup-id mkdir -p ~/Pictures/Screenshots
+bindsym Ctrl+Shift+3 exec --no-startup-id grim "~/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d-%H%M%S').png"
+bindsym Ctrl+Shift+4 exec --no-startup-id grim -g "$(slurp)" "~/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d-%H%M%S').png"

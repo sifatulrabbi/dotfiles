@@ -1,0 +1,77 @@
+{
+    "layer": "top",
+    "position": "top",
+    "modules-left": ["network", "battery", "cpu", "memory", "disk"],
+    "modules-center": ["clock"],
+    "modules-right": ["custom/belgium_time"],
+
+    "network": {
+        "format-wifi": "W: {signalStrength}% ({essid}) {ip}",
+        "format-ethernet": "E: {ip} ({speed})",
+        "format-disconnected": "W: disconnected",
+        "tooltip": false
+    },
+
+    "battery": {
+        "format": "{status} {percentage:.0f}% {timeToEmpty}",
+        "format-full": "Charged",
+        "format-charging": "Charging {percentage:.0f}%",
+        "format-discharging": "{percentage:.0f}% ({timeToEmpty})",
+        "tooltip": false,
+        "states": {
+            "good": 80,
+            "warning": 30,
+            "critical": 15
+        }
+    },
+
+    "cpu": {
+        "format": "Cpu: {usage}%",
+        "tooltip": false,
+        "max-length": 15
+    },
+
+    "temperature": {
+        "format": "{temperature}°C",
+        "path": "/sys/class/thermal/thermal_zone0/temp",
+        "thresholds": {
+            "critical": 75
+        },
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "Mem: {used}/{total}",
+        "tooltip": false
+    },
+
+    "disk": {
+        "format": "Disk: {usedPercentage}%",
+        "tooltip": false,
+        "path": "/"
+    },
+
+    "clock": {
+        "format": "{:%a, %b %d - %I:%M %p}",
+        "tooltip": false
+    },
+
+    "custom/belgium_time": {
+        "exec": "TZ='Europe/Brussels' date +'%I:%M %p'",
+        "interval": 60,
+        "return-type": "string",
+        "format": "BE: {output}",
+        "tooltip": false
+    },
+
+    "style": {
+        "background": "#282828",
+        "separator": "#a89984",
+        "statusline": "#ebdbb2",
+        "colors": {
+            "good": "#b8bb26",
+            "warning": "#fabd2f",
+            "critical": "#fb4934"
+        }
+    }
+}

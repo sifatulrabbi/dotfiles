@@ -1,0 +1,26 @@
+* {
+  color: #ebdbb2;
+  background-color: #282828;
+}
+
+#network,
+#battery,
+#cpu,
+#memory,
+#disk,
+#clock,
+#custom-belgium_time {
+  color: #b8bb26;
+}
+
+#battery.critical,
+#cpu.critical,
+#temperature.critical {
+  color: #fb4934;
+}
+
+#battery.warning,
+#cpu.warning,
+#temperature.warning {
+  color: #fabd2f;
+}
