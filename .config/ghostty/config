@@ -1,0 +1,16 @@
+# fonts
+font-family = "Hack Nerd Font Mono"
+font-size = 16
+adjust-cell-height = 20%
+font-thicken
+
+# window decorations
+window-decoration = true
+window-theme = dark
+#macos-titlebar-style = hidden
+
+# misc stuff
+clipboard-read = allow
+clipboard-write = allow
+
+cursor-style = block
