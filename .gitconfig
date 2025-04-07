@@ -3,8 +3,11 @@
 	email = mdsifatulislam.rabbi@gmail.com
 	username = sifatulrabbi
 
+[includeIf "gitdir:/Users/sifatul/work/sequesto/"]
+    path = /Users/sifatul/work/sequesto/.gitconfig-sequesto
+
 [includeIf "gitdir:/home/sifatul/work/sequesto/"]
-  path = /home/sifatul/work/sequesto/.gitconfig-sequesto
+    path = /home/sifatul/work/sequesto/.gitconfig-sequesto
 
 [init]
 	defaultBranch = main
